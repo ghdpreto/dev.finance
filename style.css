@@ -1,6 +1,8 @@
 /* GLOBAL */
 :root {
-    --dark-blue: #363f5f
+    --dark-blue: #363f5f;
+    --light-green: #3dd705;
+    --green: #49aa26;
 }
 
 /* reset */
@@ -49,12 +51,25 @@ h2 {
 
 /*LINKS & BUTTONS*/
 a {
-    color: #49aa26;
+    color: var(--green);
     text-decoration: none;
 }
 
 a:hover {
-    color: #3dd705;
+    color: var(--light-green);
+}
+
+button {
+    height: 50px;
+    border: 0;
+    color: white;
+    background: var(--green);
+    border-radius: .25rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: var(--light-green);
 }
 
 /*inline-block => pega o tamanho do elemento/conteudo*/
@@ -63,6 +78,23 @@ a:hover {
     display: inline-block;
     margin-bottom: 1rem;
 }
+
+.button.cancel {
+    color: #e92929;
+    border: 2px solid #e92929;
+    border-radius: .25rem;
+
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .5;
+}
+
+.button.cancel:hover {
+    opacity: 1;
+}
+
 
 /* HEADER */
 header {
@@ -117,7 +149,7 @@ main {
 }
 
 .card.total {
-    background: #49aa26;
+    background: var(--green);
     color: #fff;
 }
 
@@ -176,6 +208,78 @@ td.income {
 
 td.expense {
     color: #e92929;
+}
+
+/* MODAL */
+.modal-overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* escondendo o modal */
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* exibindo o modal */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: #f0f2f5;
+    padding: 2.5rem;
+
+    position: relative;
+}
+
+/* FORM MODAL */
+
+/* verificar o tamanho, não está aplicando */
+#form {
+    max-width: 500px;
+}
+
+#form h2 {
+    margin-top: 0;
+}
+
+#form form input {
+    border: none;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    width: 100%;    
+}
+
+#form form .input-group {
+    margin-top: 1rem;
+}
+
+#form form .input-group.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: .8rem;
+}
+
+
+.input-group.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-group.actions .button,
+.input-group.actions button {
+    width: 48%;
 }
 
 
