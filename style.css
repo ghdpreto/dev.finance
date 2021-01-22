@@ -10,6 +10,10 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 93.75%; /* 15px*/
+}
+
 body {
     background: #f0f2f5 ;
     font-family: 'Poppins', sans-serif;
@@ -118,6 +122,13 @@ main {
 }
 
 /* TABLE */
+#transaction {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+}
+
+
 #data-table {
     width: 100%;
     border-spacing: 0 0.5rem;
@@ -185,4 +196,19 @@ footer p.author a {
 footer p.author a img {
     width: 20px;
     color: var(--dark-blue);
+}
+
+
+/*RESPONSIVE - WEB*/
+@media (min-width: 800px) {
+    html {
+        font-size: 87.5%;
+    }
+
+    #balance {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
 }
