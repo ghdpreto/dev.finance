@@ -3,7 +3,6 @@
     --dark-blue: #363f5f
 }
 
-
 /* reset */
 * {
     margin: 0;
@@ -16,17 +15,49 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+/*visivel somente para o leitor de tela*/
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1;
+    border-width: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
 .container {
     width: min(90vw, 800px);
     margin: auto;
 }
 
+
+/*TITULOS*/
 h2 {
     margin-top: 3.2rem;
     margin-bottom: 0.8rem;
     color: var(--dark-blue);
 
     font-weight: 400;
+}
+
+/*LINKS & BUTTONS*/
+a {
+    color: #49aa26;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3dd705;
+}
+
+/*inline-block => pega o tamanho do elemento/conteudo*/
+/*block => pega o tamanho da tela*/
+.button.new {
+    display: inline-block;
+    margin-bottom: 1rem;
 }
 
 /* HEADER */
@@ -70,6 +101,9 @@ main {
 .card h3 {
     font-weight: 400;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .card p { 
