@@ -37,6 +37,7 @@ body {
 .container {
     width: min(90vw, 800px);
     margin: auto;
+    position: relative;
 }
 
 
@@ -218,6 +219,7 @@ td.expense {
 
     position: fixed;
     top: 0;
+    z-index: 9999;
 
     display: flex;
     align-items: center;
@@ -239,13 +241,14 @@ td.expense {
     padding: 2.5rem;
 
     position: relative;
+    z-index: 1;
 }
 
 /* FORM MODAL */
 
 /* verificar o tamanho, não está aplicando */
 #form {
-    max-width: 500px;
+    min-width: 350px;
 }
 
 #form h2 {
@@ -289,6 +292,13 @@ footer {
     opacity: .8;
     text-align: center;
     padding: 4rem 0 2rem;
+    margin: auto;
+    width: 100%;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
 }
 footer p.author {
     font-size: 12px;
