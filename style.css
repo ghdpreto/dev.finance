@@ -296,7 +296,7 @@ td.expense {
 
 /* FOOTER */
 footer {
-    color: var(--dark-blue);
+    color: var(--text-color-dark);
     opacity: .8;
     text-align: center;
     padding: 4rem 0 2rem;
