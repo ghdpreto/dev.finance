@@ -199,6 +199,9 @@ table tbody td {
     background: white;
     padding: 1rem 2rem;
 }
+table tbody td img {
+    cursor: pointer;
+}
 
 table tbody tr {
     opacity: 0.7;
