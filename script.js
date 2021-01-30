@@ -16,44 +16,44 @@ const Modal = {
 };
 
 // array de transacoes (valores)
-const transactions = [
-  {
-    id: 1,
-    description: "Luz",
-    amount: -50000,
-    date: "23/01/2021",
-  },
-  {
-    id: 2,
-    description: "Criação web site",
-    amount: 100000,
-    date: "21/01/2021",
-  },
-  {
-    id: 3,
-    description: "Internet",
-    amount: -20000,
-    date: "15/01/2021",
-  },
-];
+//const transactions = [];
 
 // calculos matematicos
 const Transaction = {
-    all: transactions,
-
-    add(transaction) {
-        Transaction.all.push(transaction)
-
-        console.log(Transaction.all)
-
-        App.reload()
+  all: [
+    {
+      id: 1,
+      description: "Luz",
+      amount: -50000,
+      date: "23/01/2021",
     },
-    remove(index) {
-        // removendo valor da posicao informada do array
-        Transaction.all.splice(index, 1)
-
-        App.reload()
+    {
+      id: 2,
+      description: "Criação web site",
+      amount: 100000,
+      date: "21/01/2021",
     },
+    {
+      id: 3,
+      description: "Internet",
+      amount: -20000,
+      date: "15/01/2021",
+    },
+  ],
+
+  add(transaction) {
+    Transaction.all.push(transaction);
+
+    console.log(Transaction.all);
+
+    App.reload();
+  },
+  remove(index) {
+    // removendo valor da posicao informada do array
+    Transaction.all.splice(index, 1);
+
+    App.reload();
+  },
 
   incomes() {
     // somar as entradas
@@ -97,7 +97,6 @@ const Transaction = {
 
     return total;
   },
-
 };
 
 // colocar os valores do js no html de forma dinamica
@@ -151,9 +150,8 @@ const DOM = {
   },
 
   clearTransactions() {
-      DOM.transactionContainer.innerHTML = ""
-  }
-
+    DOM.transactionContainer.innerHTML = "";
+  },
 };
 
 //utilidades, formatacao dos valores
@@ -176,44 +174,134 @@ const Utils = {
 
     return signal + value;
   },
+
+  formatAmount(value){
+      value = Number(value) * 100
+      
+      return value;
+  },
+
+  formatDate(date) {
+      // separando a data
+    const splittedDate = date.split("-")
+
+    // dia mes ano
+    return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
+  }
 };
 
+const Form = {
+  //propriedades pegando o campo (html) para extração dos dados
+  description: document.getElementById("description"),
+  amount: document.getElementById("amount"),
+  date: document.getElementById("date"),
+
+  // pegar os dados do formulario
+  getValues() {
+    return {
+      description: Form.description.value,
+      amount: Form.description.amount,
+      date: Form.date.value,
+    };
+  },
+
+  validateFields() {
+    //desestruturação de dados (usando somente o que é preciso)
+    const { description, amount, date } = Form.getValues();
+
+    // trim => removendo os espaços em branco
+    if (
+      description.trim() === "" ||
+      amount.trim() === "" ||
+      date.trim() === ""
+    ) {
+      // if algum estiver vazio, retorna um erro
+      throw new Error("Preencha os campos");
+    }
+  },
+
+  formatValues() {
+    let {description, amount, date } = Form.getValues();
+
+    amount = Utils.formatAmount(amount)
+    date = Utils.formatDate(date)
+
+    return {
+        description,
+        amount,
+        date
+    }
+  },
+
+  saveTransaction(value) {
+    Transaction.add(value)
+    alert(`Transação adicionada com sucesso ${value.description}`)
+  },
+
+  clearFields(){
+      Form.description.value = ""
+      Form.amount.value = ""
+      Form.date.value = ""
+  },
+
+
+
+
+
+
+  // capturando o evento do html
+  submit(event) {
+    event.preventDefault();
+
+    try {
+      // verificar se os campos foram preenchidos
+     //Form.validateFields();
+      // formartar os dados para salvar
+      const data = Form.formatValues();
+      // salvar os dados
+      Form.saveTransaction(data)
+      // limpar o formulario
+      Form.clearFields()
+      // fechar o modal e retorno de sucess para o usuário
+      Modal.close()
+      // atualizar o app
+      App.reload()
+    } catch (error) {
+        alert(error.message)
+    }
+  },
+};
 
 const App = {
-    init() {
+  init() {
+    // loop para adicionar conforme o array de transações
+    Transaction.all.forEach((transaction) => {
+      DOM.addTransaction(transaction);
+    });
 
-        // loop para adicionar conforme o array de transações
-        Transaction.all.forEach((transaction) => {
-            DOM.addTransaction(transaction);
-        });
+    // teste
+    //DOM.addTransaction(transactions[0], transactions.length)
+    DOM.updateBalance();
+  },
 
-        // teste
-        //DOM.addTransaction(transactions[0], transactions.length)
-        DOM.updateBalance();
-    },
-
-    reload() {
-        // limpando as transacoes
-        DOM.clearTransactions()
-        // chama o app novamente
-        App.init()
-    }
-}
-
+  reload() {
+    // limpando as transacoes
+    DOM.clearTransactions();
+    // chama o app novamente
+    App.init();
+  },
+};
 
 // iniciando a aplicacao
-App.init()
-
+App.init();
 
 // remove
-Transaction.remove(3)
+Transaction.remove(3);
 
 // adiciona
-Transaction.add(
-    {
-        id: 4,
-        description: "Foi",
-        amount: -50324,
-        date: "28/01/2021",
-      }
-)
+Transaction.add({
+  id: 4,
+  description: "Foi",
+  amount: -50324,
+  date: "28/01/2021",
+});
