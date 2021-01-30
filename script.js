@@ -44,7 +44,8 @@ const Transaction = {
   add(transaction) {
     Transaction.all.push(transaction);
 
-    console.log(Transaction.all);
+    //debug
+    //console.log(Transaction.all);
 
     App.reload();
   },
@@ -156,6 +157,7 @@ const DOM = {
 
 //utilidades, formatacao dos valores
 const Utils = {
+
   formatCurrency(value) {
     //add sinal de negativo
     const signal = Number(value) < 0 ? "-" : "";
@@ -182,7 +184,7 @@ const Utils = {
   },
 
   formatDate(date) {
-      // separando a data
+    // separando a data
     const splittedDate = date.split("-")
 
     // dia mes ano
@@ -244,18 +246,13 @@ const Form = {
       Form.date.value = ""
   },
 
-
-
-
-
-
   // capturando o evento do html
   submit(event) {
     event.preventDefault();
 
     try {
       // verificar se os campos foram preenchidos
-     //Form.validateFields();
+      Form.validateFields();
       // formartar os dados para salvar
       const data = Form.formatValues();
       // salvar os dados
@@ -295,13 +292,19 @@ const App = {
 // iniciando a aplicacao
 App.init();
 
-// remove
-Transaction.remove(3);
 
-// adiciona
+// debug remove
+/*
+Transaction.remove(3);
+ */
+
+// debug adiciona
+/*
 Transaction.add({
   id: 4,
   description: "Foi",
   amount: -50324,
   date: "28/01/2021",
 });
+*/
+
