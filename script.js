@@ -40,6 +40,21 @@ const transactions = [
 // calculos matematicos
 const Transaction = {
     all: transactions,
+
+    add(transaction) {
+        Transaction.all.push(transaction)
+
+        console.log(Transaction.all)
+
+        App.reload()
+    },
+    remove(index) {
+        // removendo valor da posicao informada do array
+        Transaction.all.splice(index, 1)
+
+        App.reload()
+    },
+
   incomes() {
     // somar as entradas
     let income = 0;
@@ -56,6 +71,7 @@ const Transaction = {
     // retornar o valor
     return income;
   },
+
   expenses() {
     // somar as saidas
     let expense = 0;
@@ -71,6 +87,7 @@ const Transaction = {
     //retornar o valor
     return expense;
   },
+
   total() {
     // valor total (entrada - saida)
     let total = 0;
@@ -80,6 +97,7 @@ const Transaction = {
 
     return total;
   },
+
 };
 
 // colocar os valores do js no html de forma dinamica
@@ -131,6 +149,11 @@ const DOM = {
       Transaction.total()
     );
   },
+
+  clearTransactions() {
+      DOM.transactionContainer.innerHTML = ""
+  }
+
 };
 
 //utilidades, formatacao dos valores
@@ -155,11 +178,42 @@ const Utils = {
   },
 };
 
-// loop para adicionar conforme o array de transações
-transactions.forEach((transaction) => {
-  DOM.addTransaction(transaction);
-});
-// teste
-//DOM.addTransaction(transactions[0], transactions.length)
 
-DOM.updateBalance();
+const App = {
+    init() {
+
+        // loop para adicionar conforme o array de transações
+        Transaction.all.forEach((transaction) => {
+            DOM.addTransaction(transaction);
+        });
+
+        // teste
+        //DOM.addTransaction(transactions[0], transactions.length)
+        DOM.updateBalance();
+    },
+
+    reload() {
+        // limpando as transacoes
+        DOM.clearTransactions()
+        // chama o app novamente
+        App.init()
+    }
+}
+
+
+// iniciando a aplicacao
+App.init()
+
+
+// remove
+Transaction.remove(3)
+
+// adiciona
+Transaction.add(
+    {
+        id: 4,
+        description: "Foi",
+        amount: -50324,
+        date: "28/01/2021",
+      }
+)
