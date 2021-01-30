@@ -15,31 +15,24 @@ const Modal = {
   },
 };
 
+// localStorage
+const Storage = {
+  get() {
+    // pega os valores do localstorage, passa para array, caso não tenha cria um array vazio
+    return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
+  },
+  set(transactions) {
+    // colocando os valores no localstorage, transformando de array para string
+    localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
+  },
+}
+
 // array de transacoes (valores)
 //const transactions = [];
 
 // calculos matematicos
 const Transaction = {
-  all: [
-    {
-      id: 1,
-      description: "Luz",
-      amount: -50000,
-      date: "23/01/2021",
-    },
-    {
-      id: 2,
-      description: "Criação web site",
-      amount: 100000,
-      date: "21/01/2021",
-    },
-    {
-      id: 3,
-      description: "Internet",
-      amount: -20000,
-      date: "15/01/2021",
-    },
-  ],
+  all: Storage.get(),
 
   add(transaction) {
     Transaction.all.push(transaction);
@@ -204,7 +197,7 @@ const Form = {
   getValues() {
     return {
       description: Form.description.value,
-      amount: Form.description.amount,
+      amount: Form.amount.value,
       date: Form.date.value,
     };
   },
@@ -281,6 +274,9 @@ const App = {
     // teste
     //DOM.addTransaction(transactions[0], transactions.length)
     DOM.updateBalance();
+
+    // atualizando o local storage
+    Storage.set(Transaction.all);
   },
 
   reload() {
