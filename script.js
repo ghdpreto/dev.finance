@@ -111,14 +111,16 @@ const DOM = {
     //criando o elemento tr (html)
     const tr = document.createElement("tr");
     // adicionando o td no tr (html)
-    tr.innerHTML = this.innerHTMLTransaction(transaction);
+    tr.innerHTML = this.innerHTMLTransaction(transaction, index);
+    // add index no tr
+    tr.dataset.index = index
 
     // adicionando no html
     DOM.transactionContainer.appendChild(tr);
   },
 
   // criando o modelo html
-  innerHTMLTransaction(transaction) {
+  innerHTMLTransaction(transaction, index) {
     // css caso o valor seja positivo ou negativo
     const CSSclass = transaction.amount > 0 ? "income" : "expense";
 
@@ -128,7 +130,7 @@ const DOM = {
               <td class="description">${transaction.description}</td>
               <td class=${CSSclass}>${amount}</td>
               <td class="date">${transaction.date}</td>
-              <td> <img src="./assets/minus.svg" alt="Remover transação"></td>
+              <td> <img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt="Remover transação"></td>
         `;
     // retornando a estrutura dos td
     return html;
@@ -272,8 +274,8 @@ const Form = {
 const App = {
   init() {
     // loop para adicionar conforme o array de transações
-    Transaction.all.forEach((transaction) => {
-      DOM.addTransaction(transaction);
+    Transaction.all.forEach((transaction, index) => {
+      DOM.addTransaction(transaction, index);
     });
 
     // teste
