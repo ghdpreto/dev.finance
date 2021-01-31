@@ -192,22 +192,39 @@ const Form = {
   description: document.getElementById("description"),
   amount: document.getElementById("amount"),
   date: document.getElementById("date"),
+  signalExpense: document.getElementById("expense"),
 
   // pegar os dados do formulario
   getValues() {
-    return {
-      description: Form.description.value,
-      amount: Form.amount.value,
-      date: Form.date.value,
-    };
+    let result;
+
+    if(Form.signalExpense.checked) {
+      result = {
+        description: Form.description.value,
+        amount: '-' + Form.amount.value,
+        date: Form.date.value,
+      }
+    } else {
+      result = {
+        description: Form.description.value,
+        amount: Form.amount.value,
+        date: Form.date.value,
+      }
+    }
+
+    return result;
   },
 
   validateFields() {
     //desestruturação de dados (usando somente o que é preciso)
     const { description, amount, date } = Form.getValues();
 
+    //removendo o sinal para validar se o campo contem dados
+    const validate = amount.replace('-', '')
+
     // trim => removendo os espaços em branco
     if (
+      validate === "" ||
       description.trim() === "" ||
       amount.trim() === "" ||
       date.trim() === ""
@@ -289,20 +306,3 @@ const App = {
 
 // iniciando a aplicacao
 App.init();
-
-
-// debug remove
-/*
-Transaction.remove(3);
- */
-
-// debug adiciona
-/*
-Transaction.add({
-  id: 4,
-  description: "Foi",
-  amount: -50324,
-  date: "28/01/2021",
-});
-*/
-
