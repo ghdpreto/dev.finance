@@ -1,334 +1,290 @@
 /*visivel somente para o leitor de tela*/
-.sr-only{
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1;
-    border-width: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1;
+  border-width: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.container .logout {
+  top: -50px;
+  right: 0;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 400ms;
+}
+.container .logout:hover {
+  transform: scale(1.2);
+}
+
+.container .logout img {
+  width: 1.8rem;
 }
 
 .container {
-    width: min(90vw, 800px);
-    margin: auto;
-    position: relative;
+  width: min(90vw, 800px);
+  margin: auto;
+  position: relative;
 }
-
 
 /*TITULOS*/
 h2 {
-    margin-top: 3.2rem;
-    margin-bottom: 0.8rem;
-    color: var(--text-color-dark);
+  margin-top: 3.2rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-color-dark);
 
-    font-weight: 400;
+  font-weight: 400;
 }
 
 /*LINKS & BUTTONS*/
 a {
-    color: var(--text-color-dark);
-    text-decoration: none;
+  color: var(--text-color-dark);
+  text-decoration: none;
 }
 
 a:hover {
-    color: var(--first-color);
+  color: var(--first-color);
 }
 
 button {
-    height: 50px;
-    border: 0;
-    color: white;
-    background: var(--first-color-dark);
-    border-radius: .25rem;
-    cursor: pointer;
+  height: 50px;
+  border: 0;
+  color: white;
+  background: var(--first-color-dark);
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
 
 button:hover {
-    background: var(--first-color);
+  background: var(--first-color);
 }
 
 /*inline-block => pega o tamanho do elemento/conteudo*/
 /*block => pega o tamanho da tela*/
 .button.new {
-    display: inline-block;
-    margin-bottom: 1rem;
+  display: inline-block;
+  margin-bottom: 1rem;
 }
 
 .button.cancel {
-    color: var(--warning-color);
-    border: 2px solid var(--warning-color);
-    border-radius: .25rem;
+  color: var(--warning-color);
+  border: 2px solid var(--warning-color);
+  border-radius: 0.25rem;
 
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: .5;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
 }
 
 .button.cancel:hover {
-    opacity: 1;
+  opacity: 1;
 }
-
 
 /* HEADER */
 header {
-    background: var(--first-color-dark);
-    padding: 2rem 0 10rem;
-    text-align: center;
-
+  background: var(--first-color-dark);
+  padding: 2rem 0 10rem;
+  text-align: center;
 }
 
 header #logo {
-    color: #fff;
-    font-weight: 100;
+  color: #fff;
+  font-weight: 100;
 }
 
-
 main {
-    width: 20rem;
+  width: 20rem;
 }
 
 /* BALANCE */
 #balance {
-    margin-top: -6rem;
+  margin-top: -6rem;
 }
 
 #balance h2 {
-    color: #fff;
-    margin-top: 0;
+  color: #fff;
+  margin-top: 0;
 }
-
 
 /* CARDS */
 .card {
-    background: #fff;
-    padding: 1.5rem 2rem;
-    border-radius: .25rem .25rem;
-    margin-bottom: 2rem;
+  background: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 0.25rem 0.25rem;
+  margin-bottom: 2rem;
 
-    color: var(--text-color-dark);
+  color: var(--text-color-dark);
 }
 
 .card h3 {
-    font-weight: 400;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  font-weight: 400;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.card p { 
-    font-size: 2rem;
-    line-height: 3rem;
-    margin-top: 1rem;
+.card p {
+  font-size: 2rem;
+  line-height: 3rem;
+  margin-top: 1rem;
 }
 
 .card.total {
-    background: var(--first-color);
-    color: #fff;
+  background: var(--first-color);
+  color: #fff;
 }
 
 /* TABLE */
 #transaction {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
+  display: block;
+  width: 100%;
+  overflow-x: auto;
 }
 
-
 #data-table {
-    width: 100%;
-    border-spacing: 0 0.5rem;
-    color: var(--text-color-dark);
+  width: 100%;
+  border-spacing: 0 0.5rem;
+  color: var(--text-color-dark);
 }
 
 table thead tr th:first-child,
-table thead tr td:first-child{
-    border-radius: .25rem 0 0 .25rem;
+table thead tr td:first-child {
+  border-radius: 0.25rem 0 0 0.25rem;
 }
 
 table thead tr th:last-child,
 table thead tr td:last-child {
-    border-radius: 0 .25rem .25rem 0;
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 table thead th {
-    background: #fff;
-    opacity: 0.8;
-    font-weight: 400;
-    padding: 1rem 2rem;
-    text-align: left;
+  background: #fff;
+  opacity: 0.8;
+  font-weight: 400;
+  padding: 1rem 2rem;
+  text-align: left;
 }
 
 table tbody td {
-    background: white;
-    padding: 1rem 2rem;
+  background: white;
+  padding: 1rem 2rem;
 }
 table tbody td img {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 table tbody tr {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 
 table tbody tr:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 td.description {
-    color: var(--text-color-dark);
+  color: var(--text-color-dark);
 }
 
 td.income {
-    color: var(--sucess-color);
+  color: var(--sucess-color);
 }
 
 td.expense {
-    color: var(--warning-color);
+  color: var(--warning-color);
 }
 
 /* MODAL */
 .modal-overlay {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
 
-    position: fixed;
-    top: 0;
-    z-index: 9999;
+  position: fixed;
+  top: 0;
+  z-index: 9999;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    /* escondendo o modal */
-    opacity: 0;
-    visibility: hidden;
+  /* escondendo o modal */
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* exibindo o modal */
 .modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal {
-    background: #f0f2f5;
-    padding: 2.5rem;
+  background: #f0f2f5;
+  padding: 2.5rem;
 
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 /* FORM MODAL */
 
 /* verificar o tamanho, não está aplicando */
 #form {
-    min-width: 350px;
+  min-width: 350px;
 }
 
 #form h2 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 #form form input {
-    border: none;
-    padding: 1rem;
-    border-radius: 0.25rem;
-    width: 100%;    
+  border: none;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  width: 100%;
 }
 
 #form form .input-group {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 #form form .input-group.options {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: .8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
 }
 
-
 .input-group.actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .input-group.actions .button,
 .input-group.actions button {
-    width: 48%;
+  width: 48%;
 }
 
 /*RESPONSIVE - WEB*/
 @media (min-width: 800px) {
-    html {
-        font-size: 87.5%;
-    }
+  html {
+    font-size: 87.5%;
+  }
 
-    #balance {
-        display: grid;
-        grid-template-rows: 1fr;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-}
-
-
-/*ANIMACOES*/
-@keyframes up {
-    from {
-        opacity: 0;
-        transform: translateY(150px)
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-@keyframes down {
-    from {
-        opacity: 0;
-        transform: translateY(-400px)
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes opacity {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-
-.animate-up {
-    animation-name: up;
-    animation-duration: 600ms;
-    animation-fill-mode: backwards;
-}
-
-.animate-down {
-    animation-name: down;
-    animation-duration: 600ms;
-    animation-fill-mode: backwards;
-}
-
-.animate-opacity {
-    animation-name: opacity;
-    animation-delay: 400ms;
-    animation-duration: 600ms;
-    animation-fill-mode: backwards;
+  #balance {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
 }
