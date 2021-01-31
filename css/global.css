@@ -28,6 +28,17 @@ body {
 }
 
 
+
+/* HEADER */
+header {
+    background: var(--first-color-dark);
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 /* FOOTER */
 footer {
     color: var(--text-color-dark);
