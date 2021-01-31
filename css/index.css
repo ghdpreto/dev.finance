@@ -5,6 +5,7 @@
 }
 
 main .description {
+  color: var(--text-color-dark);
   padding: 1rem 0;
   text-align: center;
 
