@@ -1,34 +1,3 @@
-/* GLOBAL */
-:root {
-    --text-color-dark: #363f5f;
-    --second-color: #34952A;
-    --second-color-dark: #34952A;
-    --first-color: #F09235;
-    --first-color-dark: #c7792c;
-    --warning-color: #DB2337;
-    --sucess-color: #34952A;
-}
-
-/* reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 93.75%; /* 15px*/
-    height: 100%;
-    position: relative;
-
-}
-
-body {
-    background: #f0f2f5 ;
-    font-family: 'Poppins', sans-serif;
-
-}
-
 /*visivel somente para o leitor de tela*/
 .sr-only{
     position: absolute;
@@ -255,7 +224,6 @@ td.expense {
     position: relative;
     z-index: 1;
 }
-
 /* FORM MODAL */
 
 /* verificar o tamanho, não está aplicando */
@@ -296,33 +264,6 @@ td.expense {
 .input-group.actions button {
     width: 48%;
 }
-
-
-/* FOOTER */
-footer {
-    color: var(--text-color-dark);
-    opacity: .8;
-    text-align: center;
-    padding: 4rem 0 2rem;
-    margin: auto;
-    width: 100%;
-
-    bottom: 0;
-    left: 0;
-
-}
-footer p.author {
-    font-size: 12px;
-}
-footer p.author a {
-    color: var(--text-color-dark);
-}
-
-footer p.author a img {
-    width: 20px;
-    color: var(--text-color-dark);
-}
-
 
 /*RESPONSIVE - WEB*/
 @media (min-width: 800px) {

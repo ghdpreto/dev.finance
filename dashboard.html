@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dev.finance$</title>
+    
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    
+
+    <link rel="icon" href="./assets/fav32x32.ico" type="image/x-icon">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet"> 
+
+  </head>
+
+  <body>
+    <header class="animate-down">
+      <img src="./assets/logo.svg" alt="dev.finance$" >
+    </header>
+
+    <main class="container">
+      <section id="balance" class="animate-up">
+        <h2 class="sr-only">Balanço</h2>
+
+        <div class="card">
+          <h3>
+            <span>Entrada</span> 
+            <span><img src="./assets/income.svg" alt="Imagem de entradas"></span>
+          </h3>
+          
+          <p id="incomeDisplay">R$ 00,00</p>
+        </div>
+
+        <div class="card">
+          <h3>
+              <span>Saídas</span>  
+              <span><img src="./assets/expense.svg" alt="Imagem de saídas" ></span>
+          </h3>
+          <p id="expenseDisplay">R$ 00,00</p>
+        </div>
+
+        <div class="card total">
+          <h3>
+            <span>Total</span>
+            <span><img src="./assets/total.svg" alt="Imagem do total"></span> 
+          </h3>
+          <p id="totalDisplay">R$ 00,00</p>
+        </div>
+      </section>
+
+      <section id="transaction" class="animate-opacity">
+        <h2 class="sr-only">Transações</h2>
+
+        <a href="#" onclick="Modal.open()" class="button new">+ Nova transação</a>
+
+        <table id="data-table">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Data</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <!--### MODAL ###-->
+
+    <div class="modal-overlay">
+      <div class="modal">
+        <div id="form">
+          <h2>Nova Transação</h2>
+          <form action="" onsubmit="Form.submit(event)">
+            <div class="input-group">
+              <label class="sr-only" for="description">Descrição</label>
+              <input 
+                type="text"
+                id="description"
+                name="description"
+                placeholder="Descrição"
+              />
+            </div>
+            <div class="input-group">
+              <label class="sr-only" for="amount">Valor</label>
+              <input 
+                type="number"
+                id="amount"
+                name="amount"
+                placeholder="00,00"
+              />
+            </div>
+
+            <div class="input-group options">
+              <label for="income">Entrada</label>
+              <input 
+                type="radio"
+                id="income"
+                name="options"
+                checked                
+              />
+              <label for="expense">Saída</label>
+              <input 
+                type="radio"
+                id="expense"
+                name="options"
+              />
+
+            </div>
+
+            <div class="input-group">
+              <label class="sr-only" for="date">Valor</label>
+              <input 
+                type="date"
+                id="date"
+                name="date"
+                placeholder="01/01/2021"
+              />
+            </div>
+
+            <div class="input-group actions">
+              <a href="#" onclick="Modal.close()" class="button cancel">Cancelar</a>
+              <button type="submit">Salvar</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer class="animate-opacity">
+      <p>dev.finance$</p>
+      <p class="author">Feito por <a href="https://github.com/ghdpreto" target="_blank">Gustavo Henrique <img src="./assets/GitHub-Mark-32px.png" alt="Github"></a></p>
+      <p class="author">Maratona Discover - <a href="https://rocketseat.com.br/" target="_blank" rel="noopener noreferrer">Rocketseat</p>
+    </footer>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
