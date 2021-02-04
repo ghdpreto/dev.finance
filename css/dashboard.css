@@ -146,9 +146,19 @@ main {
 
 /* TABLE */
 #transaction {
-  display: block;
+  display: none;
   width: 100%;
   overflow-x: auto;
+}
+
+#transaction-not-found {
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  line-height: 2.8rem;
+  text-align: center;
+}
+#transaction-not-found h1 {
+  margin-bottom: 1rem;
 }
 
 #data-table {
@@ -231,17 +241,13 @@ td.expense {
 .modal {
   background: #f0f2f5;
   padding: 2.5rem;
-
+  min-width: 320px;
+  width: 90vw;
   position: relative;
   z-index: 1;
 }
+
 /* FORM MODAL */
-
-/* verificar o tamanho, não está aplicando */
-#form {
-  min-width: 350px;
-}
-
 #form h2 {
   margin-top: 0;
 }
@@ -286,5 +292,13 @@ td.expense {
     grid-template-rows: 1fr;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+  }
+
+  #transaction-not-found {
+    padding: 4rem 2rem;
+  }
+
+  .modal {
+    max-width: 500px;
   }
 }
