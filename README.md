@@ -20,5 +20,5 @@ Projeto realizado na semana **Discover** realizada pela [**Rocketseat**](https:/
 ## Ideias :bulb:
 
 - [ ] - Tela de confimação de sucesso ao adicionar o valor;
-- [ ] - Tela de aviso quando não possuir transações;
+- [x] - Tela de aviso quando não possuir transações;
 - [ ] - Paginação na tabela de transações;
