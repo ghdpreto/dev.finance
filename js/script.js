@@ -311,6 +311,9 @@ const App = {
       });
       // atualizando o local storage
       Storage.set(Transaction.all);
+      
+      // atualiza os valores totais
+      DOM.updateBalance();
     } else {
       DOM.notFoundTransactions(false);
       // atualizando o local storage
