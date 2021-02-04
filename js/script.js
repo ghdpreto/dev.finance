@@ -19,13 +19,16 @@ const Modal = {
 const Storage = {
   get() {
     // pega os valores do localstorage, passa para array, caso não tenha cria um array vazio
-    return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
+    return JSON.parse(localStorage.getItem("dev.finances:transactions")) || [];
   },
   set(transactions) {
     // colocando os valores no localstorage, transformando de array para string
-    localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
+    localStorage.setItem(
+      "dev.finances:transactions",
+      JSON.stringify(transactions)
+    );
   },
-}
+};
 
 // array de transacoes (valores)
 //const transactions = [];
@@ -100,13 +103,12 @@ const DOM = {
   addTransaction(transaction, index) {
     // debug
     //console.log(transaction.amount);
-
     //criando o elemento tr (html)
     const tr = document.createElement("tr");
     // adicionando o td no tr (html)
     tr.innerHTML = this.innerHTMLTransaction(transaction, index);
     // add index no tr
-    tr.dataset.index = index
+    tr.dataset.index = index;
 
     // adicionando no html
     DOM.transactionContainer.appendChild(tr);
@@ -148,11 +150,29 @@ const DOM = {
   clearTransactions() {
     DOM.transactionContainer.innerHTML = "";
   },
+
+  notFoundTransactions(value) {
+    const transactionNotFound = document.getElementById(
+      "transaction-not-found"
+    );
+    const transaction = document.getElementById("transaction");
+
+    if (value) {
+      // esconde o aviso
+      transactionNotFound.style.display = "none";
+      //exibe as transacoes
+      transaction.style.display = "block";
+    } else {
+      // exibe o aviso
+      transactionNotFound.style.display = "block";
+      //esconde as transacoes
+      transaction.style.display = "none";
+    }
+  },
 };
 
 //utilidades, formatacao dos valores
 const Utils = {
-
   formatCurrency(value) {
     //add sinal de negativo
     const signal = Number(value) < 0 ? "-" : "";
@@ -172,19 +192,19 @@ const Utils = {
     return signal + value;
   },
 
-  formatAmount(value){
-      value = Number(value) * 100
-      
-      return value;
+  formatAmount(value) {
+    value = Number(value) * 100;
+
+    return value;
   },
 
   formatDate(date) {
     // separando a data
-    const splittedDate = date.split("-")
+    const splittedDate = date.split("-");
 
     // dia mes ano
-    return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
-  }
+    return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
+  },
 };
 
 const Form = {
@@ -198,18 +218,18 @@ const Form = {
   getValues() {
     let result;
 
-    if(Form.signalExpense.checked) {
+    if (Form.signalExpense.checked) {
       result = {
         description: Form.description.value,
-        amount: '-' + Form.amount.value,
+        amount: "-" + Form.amount.value,
         date: Form.date.value,
-      }
+      };
     } else {
       result = {
         description: Form.description.value,
         amount: Form.amount.value,
         date: Form.date.value,
-      }
+      };
     }
 
     return result;
@@ -220,7 +240,7 @@ const Form = {
     const { description, amount, date } = Form.getValues();
 
     //removendo o sinal para validar se o campo contem dados
-    const validate = amount.replace('-', '')
+    const validate = amount.replace("-", "");
 
     // trim => removendo os espaços em branco
     if (
@@ -235,27 +255,27 @@ const Form = {
   },
 
   formatValues() {
-    let {description, amount, date } = Form.getValues();
+    let { description, amount, date } = Form.getValues();
 
-    amount = Utils.formatAmount(amount)
-    date = Utils.formatDate(date)
+    amount = Utils.formatAmount(amount);
+    date = Utils.formatDate(date);
 
     return {
-        description,
-        amount,
-        date
-    }
+      description,
+      amount,
+      date,
+    };
   },
 
   saveTransaction(value) {
-    Transaction.add(value)
-    alert(`Transação adicionada com sucesso ${value.description}`)
+    Transaction.add(value);
+    alert(`Transação adicionada com sucesso ${value.description}`);
   },
 
-  clearFields(){
-      Form.description.value = ""
-      Form.amount.value = ""
-      Form.date.value = ""
+  clearFields() {
+    Form.description.value = "";
+    Form.amount.value = "";
+    Form.date.value = "";
   },
 
   // capturando o evento do html
@@ -268,32 +288,37 @@ const Form = {
       // formartar os dados para salvar
       const data = Form.formatValues();
       // salvar os dados
-      Form.saveTransaction(data)
+      Form.saveTransaction(data);
       // limpar o formulario
-      Form.clearFields()
+      Form.clearFields();
       // fechar o modal e retorno de sucess para o usuário
-      Modal.close()
+      Modal.close();
       // atualizar o app
-      App.reload()
+      App.reload();
     } catch (error) {
-        alert(error.message)
+      alert(error.message);
     }
   },
 };
 
 const App = {
   init() {
-    // loop para adicionar conforme o array de transações
-    Transaction.all.forEach((transaction, index) => {
-      DOM.addTransaction(transaction, index);
-    });
+    if (Transaction.all.length > 0) {
+      DOM.notFoundTransactions(true);
+      // loop para adicionar conforme o array de transações
+      Transaction.all.forEach((transaction, index) => {
+        DOM.addTransaction(transaction, index);
+      });
+      // atualizando o local storage
+      Storage.set(Transaction.all);
+    } else {
+      DOM.notFoundTransactions(false);
+      // atualizando o local storage
+      Storage.set(Transaction.all);
 
-    // teste
-    //DOM.addTransaction(transactions[0], transactions.length)
-    DOM.updateBalance();
-
-    // atualizando o local storage
-    Storage.set(Transaction.all);
+      // atualiza os valores totais
+      DOM.updateBalance();
+    }
   },
 
   reload() {
